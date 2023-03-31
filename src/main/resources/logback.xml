@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>	
 	<contextName>${HOSTNAME}</contextName>
+	<property name = "app.name" value = "FileTransferGui"/>
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>
@@ -10,7 +11,7 @@
 	</appender>
 
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-       <file>${user.dir}/logs/FileTransferGui.log</file>
+       <file>${user.dir}/logs/${app.name}.log</file>
        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
          <FileNamePattern>${user.dir}/logs/${app.name}.log.%i.log</FileNamePattern>
          <minIndex>1</minIndex>
@@ -28,7 +29,7 @@
    </appender>
 
 	<root>
-		<level value="warn" />
+		<level value="info" />
 		<appender-ref ref="stdout" />
 		<appender-ref ref="file" />
 	</root>

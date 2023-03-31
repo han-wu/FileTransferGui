@@ -2,6 +2,8 @@ package org.heino.gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import org.heino.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +18,7 @@ import java.util.prefs.Preferences;
  * @date 2023/3/29 09:51
  */
 public class _JMenuBar extends JMenuBar {
+    private static final Logger LOGGER = LoggerFactory.getLogger(_JMenuBar.class);
     public _JMenuBar() {
         init();
     }
@@ -120,7 +123,10 @@ public class _JMenuBar extends JMenuBar {
             default:
                 break;
         }
+
+        String currentSkin =  UIManager.getLookAndFeel().getName();
         IntelliJTheme.setup(_JMenuBar.class.getResourceAsStream(path));
+        LOGGER.info("更换皮肤，当前皮肤 = {}， 更换的皮肤 = {}", currentSkin, UIManager.getLookAndFeel().getName());
         if (null != container)
             SwingUtilities.updateComponentTreeUI(container);
     }
